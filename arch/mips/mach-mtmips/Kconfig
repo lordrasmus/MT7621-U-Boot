@@ -18,6 +18,15 @@ config SOC_MT7628
 	help
 	  This supports MediaTek MT7628/MT7688.
 
+config SOC_MT7621
+	bool "MT7621"
+	select MIPS_L1_CACHE_SHIFT_5
+	select PINCTRL_MT7621
+	select MTK_SERIAL
+	help
+	  This supports MediaTek MT7621
+
+
 endchoice
 
 choice
@@ -43,6 +52,14 @@ config BOARD_LINKIT_SMART_7688
 	  ethernet ports, 1 USB port, 1 UART, GPIO buttons and LEDs, and
 	  a MT7688 (PCIe).
 
+config BOARD_MIKROTIK_RB750G_V3
+	bool "Mikrotik RouterBoard RB750G v3"
+	depends on SOC_MT7621
+	select BOARD_LATE_INIT
+	select SUPPORTS_BOOT_RAM
+	help
+	  GARDENA smart Gateway boards have a MT7688 SoC with 128 MiB of RAM
+	  and 8 MiB of flash (SPI NOR) and additional SPI NAND storage.
 endchoice
 
 choice
